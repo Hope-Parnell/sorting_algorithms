@@ -15,7 +15,7 @@ void merge(int *array, int li, int mid, int ri)
 	int i, j, k;
     int n1 = mid - li + 1;
     int n2 = ri - mid;
-	int left[n1], right[n2];
+	int left[1024], right[1024];
 
 	printf("Merging...\n");
 	for (i = 0; i < n1; i++)
