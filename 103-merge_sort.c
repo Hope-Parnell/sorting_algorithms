@@ -43,7 +43,7 @@ void merge(int *array, int li, int mid, int ri)
 	}
 	for (; i < n1; i++, k++)
 		array[k] = left[i];
-	for(; j < n2; j++, k++)
+	for (; j < n2; j++, k++)
 		array[k] = right[j];
 	printf("[Done]: ");
 	print_array(&array[li], n1 + n2);
