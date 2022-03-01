@@ -7,7 +7,7 @@
  */
 void countingSort(int *array, size_t size, int place)
 {
-	int output[1024], count[1024];
+	int output[1024], count[1024], j;
 	size_t i, max = (array[0] / place) % 10;
 
 	for (i = 1; i < size; i++)
@@ -21,10 +21,10 @@ void countingSort(int *array, size_t size, int place)
 		count[(array[i] / place) % 10]++;
 	for (i = 1; i < 10; i++)
 		count[i] += count[i - 1];
-	for (i = size - 1; (int)i >= 0; i--)
+	for (j = size - 1; j >= 0; j--)
 	{
-		output[count[(array[i] / place) % 10] - 1] = array[i];
-		count[(array[i] / place) % 10]--;
+		output[count[(array[j] / place) % 10] - 1] = array[j];
+		count[(array[j] / place) % 10]--;
 	}
 	for (i = 0; i < size; i++)
 		array[i] = output[i];
@@ -39,7 +39,7 @@ void radix_sort(int *array, size_t size)
 	size_t place, max, i;
 
 
-	if (!array || size < 1)
+	if (!array || size < 2)
 		return;
 	for (i = 1; i < size; i++)
 	{
