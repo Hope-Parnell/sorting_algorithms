@@ -5,26 +5,21 @@
  * @size: size of the array
  * @place: which digit place we are on
  */
-void countingSort(int *array, size_t size, int place)
+void countingSort(int *array, int size, int place)
 {
-	int output[1025], count[1025], j;
-	size_t i, max = (array[0] / place) % 10;
+	int output[1024];
+	int i, count[10] = { 0 };
 
-	for (i = 1; i < size; i++)
-	{
-		if (((array[i] / place) % 10) > (int)max)
-			max = array[i];
-	}
-	for (i = 0; i < max; ++i)
-		count[i] = 0;
+
 	for (i = 0; i < size; i++)
 		count[(array[i] / place) % 10]++;
+
 	for (i = 1; i < 10; i++)
 		count[i] += count[i - 1];
-	for (j = size - 1; j >= 0; j--)
+	for (i = size - 1; i >= 0; i--)
 	{
-		output[count[(array[j] / place) % 10] - 1] = array[j];
-		count[(array[j] / place) % 10]--;
+		output[count[(array[i] / place) % 10] - 1] = array[i];
+		count[(array[i] / place) % 10]--;
 	}
 	for (i = 0; i < size; i++)
 		array[i] = output[i];
@@ -36,15 +31,15 @@ void countingSort(int *array, size_t size, int place)
  */
 void radix_sort(int *array, size_t size)
 {
-	size_t place, max, i;
+	int place, max, i;
 
 
 	if (!array || size < 2)
 		return;
 	max = array[0];
-	for (i = 1; i < size; i++)
+	for (i = 1; i < (int)size; i++)
 	{
-		if (array[i] > (int)max)
+		if (array[i] > max)
 			max = array[i];
 	}
 	for (place = 1; max / place > 0; place *= 10)
