@@ -7,7 +7,7 @@
  */
 void countingSort(int *array, size_t size, int place)
 {
-	int output[1024], count[1024], j;
+	int output[1025], count[1025], j;
 	size_t i, max = (array[0] / place) % 10;
 
 	for (i = 1; i < size; i++)
